@@ -12,8 +12,8 @@ client = ComputerVisionClient(
     credentials=CognitiveServicesCredentials(KEY)
 )
 
-IMAGE = "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg" # 影像
-LANG = "en" # 描述語言
+IMAGE = 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg' # 影像
+LANG = 'en' # 描述語言
 MAX = 1 # 產生的最大描述數量
 
 analysis = client.describe_image(url=IMAGE, max_descriptions=MAX, language=LANG)
