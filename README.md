@@ -11,7 +11,7 @@ Azure AI服務：電腦視覺測試範例([參考文件](https://learn.microsoft
 將 Azure AI 電腦視覺的金鑰與服務端點寫入環境變數檔案(`.env`)
 
  # 測試單機應用程式(app.py)
-1. 依據需要修改app.py (例如，影像來源、描述語言)
+1. 依據需要修改 app.py (例如，影像來源)
 2. 執行 app.py
 
    `python app.py`
@@ -19,7 +19,7 @@ Azure AI服務：電腦視覺測試範例([參考文件](https://learn.microsoft
 # 測試 API 服務(api.py)
 1. 執行 api.py
 
-    `python api.py`
+   `python api.py`
 2. 開啟瀏覽器並前往 http://127.0.0.1:8080?language=en&image=https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg
 
 # 測試網頁頁用程式(web.py)

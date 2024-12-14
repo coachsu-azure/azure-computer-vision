@@ -11,7 +11,6 @@ from msrest.authentication import CognitiveServicesCredentials
 # 如果.env存在，讀取.env檔案
 env_path = pathlib.Path(".env")
 if env_path.exists():
-    print(env_path)
     load_dotenv(dotenv_path=env_path, override=True)
 
 # 取得環境變數
