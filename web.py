@@ -1,3 +1,6 @@
+"""
+    Azure AI 電腦視覺(網頁版)
+"""
 import os
 import pathlib
 from dotenv import load_dotenv
@@ -9,7 +12,7 @@ from msrest.authentication import CognitiveServicesCredentials
 env_path = pathlib.Path(".env")
 if env_path.exists():
     print(env_path)
-    load_dotenv(dotenv_path=env_path)
+    load_dotenv(dotenv_path=env_path, override=True)
 
 # 取得環境變數
 KEY = os.getenv('KEY')
@@ -19,7 +22,9 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def object_detection():
-    
+    """
+        Azure AI 電腦視覺(網頁版)
+    """    
     image_url  = ""
     language = "en"
     description = ""
@@ -36,7 +41,7 @@ def object_detection():
 
         analysis = client.describe_image(url=image_url, max_descriptions=1, language=language)
         result = analysis.captions[0]
-        description = "{} [{}]".format(result.text, result.confidence)
+        description = f"{result.text} [{result.confidence}]"
         print(description)
 
     return render_template("index.html",

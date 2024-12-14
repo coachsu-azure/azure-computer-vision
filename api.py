@@ -1,7 +1,10 @@
+"""
+    Azure AI 電腦視覺(API 版)
+"""
 import os
 import pathlib
 from dotenv import load_dotenv
-from flask import Flask, request, render_template
+from flask import Flask, request
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
 
@@ -9,7 +12,7 @@ from msrest.authentication import CognitiveServicesCredentials
 env_path = pathlib.Path(".env")
 if env_path.exists():
     print(env_path)
-    load_dotenv(dotenv_path=env_path)
+    load_dotenv(dotenv_path=env_path, override=True)
 
 # 取得環境變數
 KEY = os.getenv('KEY')
@@ -19,16 +22,20 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def object_detection():
-    IMAGE = request.args.get('image')
-    LANG = request.args.get('language')
+    """
+        image: 影像 URL
+        language: 描述語言
+    """
+    image = request.args.get('image')
+    language = request.args.get('language')
 
-    if IMAGE and LANG:
+    if image and language:
         client = ComputerVisionClient(
             endpoint=ENDPOINT,
             credentials=CognitiveServicesCredentials(KEY)
         )
 
-        analysis = client.describe_image(url=IMAGE, max_descriptions=1, language=LANG)
+        analysis = client.describe_image(url=image, max_descriptions=1, language=language)
         result = analysis.captions[0]
         return f"{result.text} [{result.confidence}]"
 

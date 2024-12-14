@@ -1,5 +1,5 @@
 # azure-computer-vision
-Azure AI服務：電腦視覺測試範例
+Azure AI服務：電腦視覺測試範例([參考文件](https://learn.microsoft.com/en-us/python/api/overview/azure/cognitiveservices-vision-computervision-readme?view=azure-python-previous))
 
 # 測試環境設定
  1. [建議] 先建立虛擬環境
@@ -10,13 +10,13 @@ Azure AI服務：電腦視覺測試範例
 # 修改環境變數
 將 Azure AI 電腦視覺的金鑰與服務端點寫入環境變數檔案(`.env`)
 
- # 測試單機執行程式(app.py)
+ # 測試單機應用程式(app.py)
 1. 依據需要修改app.py (例如，影像來源、描述語言)
 2. 執行 app.py
 
    `python app.py`
 
-# 測試 flask API 服務(api.py)
+# 測試 API 服務(api.py)
 1. 執行 api.py
 
     `python api.py`
