@@ -19,29 +19,20 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def object_detection():
-    
-    image_url  = ""
-    language = "en"
-    description = ""
+    IMAGE = request.args.get('image')
+    LANG = request.args.get('language')
 
-    if request.method == 'POST':
-        image_url = request.form.get("image_url")
-
-        print(image_url)
-
+    if IMAGE and LANG:
         client = ComputerVisionClient(
             endpoint=ENDPOINT,
             credentials=CognitiveServicesCredentials(KEY)
         )
 
-        analysis = client.describe_image(url=image_url, max_descriptions=1, language=language)
+        analysis = client.describe_image(url=IMAGE, max_descriptions=1, language=LANG)
         result = analysis.captions[0]
-        description = "{} [{}]".format(result.text, result.confidence)
-        print(description)
+        return f"{result.text} [{result.confidence}]"
 
-    return render_template("index.html",
-                           image_url=image_url,
-                           description=description)
+    return "Please provide image and language parameters."
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)

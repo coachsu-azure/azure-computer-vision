@@ -1,11 +1,19 @@
 #  參考文件
 #  https://learn.microsoft.com/en-us/python/api/overview/azure/cognitiveservices-vision-computervision-readme?view=azure-python-previous
+import os
+import pathlib
+from dotenv import load_dotenv
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
 
-# 以下資訊可以從 Azure 電腦視覺服務取得(正式上線時不要直接把金鑰跟服務端點寫在程式碼裡)
-KEY = '' # 填入金鑰
-ENDPOINT = '' # 填入端點
+# 如果.env存在，讀取.env檔案
+env_path = pathlib.Path(".env")
+if env_path.exists():
+    load_dotenv(dotenv_path=env_path)
+
+# 取得環境變數
+KEY = os.getenv('KEY')
+ENDPOINT = os.getenv('ENDPOINT')
 
 client = ComputerVisionClient(
     endpoint=ENDPOINT,
